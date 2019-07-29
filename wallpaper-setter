@@ -1,0 +1,8 @@
+#!/bin/bash
+i=0
+while [ ! $i -gt 5 ]
+do
+	node fetch-basic.js
+	((i++))
+done
+exit 0
