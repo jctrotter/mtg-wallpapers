@@ -3,7 +3,7 @@ var fs = require('fs')
 
 var result;
 
-https.get('https://api.scryfall.com/cards/random?q=t%3Abasic', (resp) => {
+https.get('https://api.scryfall.com/cards/random?q=t%3Abasic&unique=prints', (resp) => {
 	let data = '';
 	resp.on('data', (chunk) => {
 		data += chunk;
