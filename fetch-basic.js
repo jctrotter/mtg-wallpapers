@@ -13,7 +13,7 @@ https.get('https://api.scryfall.com/cards/random?q=t%3Abasic&unique=prints', (re
 		result = JSON.parse(data);
 		let img_url = result.image_uris.art_crop;
 		//write('images/'+result.oracle_id+'.json', data)
-		fs.writeFile('images/'+result.oracle_id+'.json', data, 'utf-8', function(err){
+		fs.writeFile('card-info/'+result.id+'.json', data, 'utf-8', function(err){
 			if (err) throw err
 			console.log("Card info saved.")
 		})
@@ -34,7 +34,7 @@ function get_img(img_url){
 		});
 		
 		resp.on('end', () => {
-			fs.writeFile('images/'+result.oracle_id+'.png', img_data, 'binary', function(err){
+			fs.writeFile('images/'+result.id+'.png', img_data, 'binary', function(err){
 				if (err) throw err
 				console.log('Image saved.')
 			})
