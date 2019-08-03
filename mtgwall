@@ -36,6 +36,25 @@ function refresh_cards(){
 	wallpaper_set
 }
 
-wallpaper_set
+function wall_info(){
+	cat lands-displayed.txt
+}
 
+while [ ! $# -eq 0 ]
+do
+	case "$1" in
+		--displayed | -D)
+			wall_info
+			exit
+			;;
+		--refresh | -R)
+			refresh_cards
+			exit
+			;;
+	esac
+	shift
+	exit 0
+done
+
+wallpaper_set
 exit 0
