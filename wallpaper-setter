@@ -1,8 +1,40 @@
 #!/bin/bash
-i=0
-while [ ! $i -gt 5 ]
-do
-	node fetch-basic.js
-	((i++))
-done
+IMAGES="/home/james/Documents/projects/scryfall-fetch/images/*.png"
+function fetch_cards(){
+	i=0
+	while [ ! $i -gt 5 ]
+	do
+		node fetch-basic.js
+		((i++))
+	done
+}
+
+function wallpaper_set(){
+	valid=1
+	for filename in $IMAGES
+	do
+		if ! grep -Fxq "$filename" visited.txt
+		then
+			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s $filename
+			echo $filename >> visited.txt
+			valid=0
+			echo "Background changed."
+			break
+		fi
+	done
+	if [ $valid == 1 ]
+	then
+		refresh_cards
+	fi
+}
+
+function refresh_cards(){
+	rm ./images/*
+	rm ./card-info/*
+	fetch_cards
+	wallpaper_set
+}
+
+wallpaper_set
+
 exit 0
