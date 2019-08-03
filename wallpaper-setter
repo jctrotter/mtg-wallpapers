@@ -13,10 +13,10 @@ function wallpaper_set(){
 	valid=1
 	for filename in $IMAGES
 	do
-		if ! grep -Fxq "$filename" visited.txt
+		if ! grep -Fxq "$filename" lands-displayed.txt
 		then
 			xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s $filename
-			echo $filename >> visited.txt
+			echo $filename >> lands-displayed.txt
 			valid=0
 			echo "Background changed."
 			break
