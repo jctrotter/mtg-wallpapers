@@ -31,6 +31,7 @@ function wallpaper_set(){
 function refresh_cards(){
 	rm ./images/*
 	rm ./card-info/*
+	rm lands-displayed.txt
 	fetch_cards
 	wallpaper_set
 }
